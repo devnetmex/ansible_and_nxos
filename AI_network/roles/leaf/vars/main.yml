@@ -1,0 +1,49 @@
+---
+# vars file for leaf role
+
+# List of features to enable on the switch
+features:
+  - { feature: ospf }  # Enable OSPF
+  - { feature: bgp }  # Enable BGP
+  - { feature: interface-vlan }  # Enable VLAN interface mode
+  - { feature: pim }  # Enable Protocol Independent Multicast
+  - { feature: vnseg_vlan }  # Enable VLAN-based VXLAN 
+  - { feature: nv overlay }  # Enable VXLAN
+
+asn: 65100
+
+ospf_process_id: UNDERLAY
+
+ospf_area: 0.0.0.0
+
+bgp_redistribute_tag: 12345
+
+bgp_neighbors:
+  - remote_as: 65100
+    neighbor: 10.2.0.3
+    update_source: Loopback0
+    afi: l2vpn
+    safi: evpn
+
+rp_address: 10.254.254.1
+group_list: 239.1.1.0/25
+ssm_range: 232.0.0.0/8
+
+vlans_l2vni:
+  - vlan_id: 2300
+    vni: 30000
+    gw_addr: 192.168.1.254
+    mask: 24
+    mcast_grp: 239.1.1.1
+    vrf: AI_ML_VRF_50000
+
+vlans_l3vni:
+  - vlan_id: 2000
+    vni: 50000
+    vrf: AI_ML_VRF_50000
+
+vrfs:
+  - vrf: AI_ML_VRF_50000
+    vni: 50000
+    afi: ipv4
+    safi: unicast

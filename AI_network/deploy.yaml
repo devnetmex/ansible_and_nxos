@@ -1,0 +1,15 @@
+---
+- hosts: spines
+  gather_facts: no
+  vars_files:
+    - vault.yaml
+  roles:
+    - role: spine
+
+- hosts: leafs
+  gather_facts: no
+  vars_files:
+    - vault.yaml
+  roles:
+    - role: leaf
+    

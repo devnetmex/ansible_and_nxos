@@ -1,0 +1,37 @@
+##### Encriptar passwords en ansible
+
+crea un archivo en .yaml en donde se guardaran tus usuarios y tus passwords
+
+ansible-vault create vault.yaml
+
+VaultPass!123
+
+ansible_user: admin
+ansible_password: C!sco123 
+
+##### Crear un role en ansible con sus estructura de archivos correspondiente
+
+ansible-galaxy init spine
+
+ansible-galaxy init leaf
+
+##### Abrir Visual Studio en el directorio actual
+
+code .
+
+
+##### Ejecturar Ansible playbook usando tags para ejecutar task especificas y vault passwords
+
+ansible-playbook deploy.yaml -t batch1 --ask-vault-pass
+
+o ejecutar playbook usando vault pass agregando la variable vault_password_file al archivo ansible.cfg
+
+ansible-playbook deploy.yaml -t batch2
+
+##### Usar Vault Passowrd en archivo txt
+
+echo 'VaultPass!123' > vault_pass.txt
+
+
+$$$$$$$$$$$$$$$ Pending copy the tasks in the spine and leaf roles 
+

@@ -1,0 +1,31 @@
+---
+# vars file for spine role
+
+# List of features to enable on the switch
+features:
+  - { feature: ospf }  # Enable OSPF
+  - { feature: bgp }  # Enable BGP
+  - { feature: pim }  # Enable Protocol Independent Multicast
+
+asn: 65100
+
+ospf_process_id: UNDERLAY
+
+ospf_area: 0.0.0.0
+
+bgp_neighbors:
+  - remote_as: 65100
+    neighbor: 10.2.0.1
+    update_source: Loopback0
+
+  - remote_as: 65100
+    neighbor: 10.2.0.2
+    update_source: Loopback0
+
+address_families:
+  afi: l2vpn
+  safi: evpn
+
+rp_address: 10.254.254.1
+group_list: 239.1.1.0/25
+ssm_range: 232.0.0.0/8
